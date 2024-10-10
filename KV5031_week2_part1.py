@@ -1,24 +1,33 @@
-class BADAnimal:
-    def __init__(self, name: str, is_dog: bool, breed_or_color: str):
+class Animal:
+    def __init__(self, name: str, colour: str):
         self.name = name
-        self.is_dog = is_dog # Boolean flag: True if dog, False if cat
-        self.breed_or_color = breed_or_color # Either breed for dog, or color for cat
+        self.colour = colour
+
+
+class Dog(Animal):
+    def __init__(self, name: str, colour: str, breed: str):
+        super().__init__(name, colour)
+        self.breed = breed
 
     def speak(self):
-        if self.is_dog:
-            return "Woof!"
-        else:
-            return "Meow!"
+        return "Woof!"
 
     def display_info(self):
-        if self.is_dog:
-            print(f"Name: {self.name}, Species: Dog, Breed: {self.breed_or_color}")
-        else:
-            print(f"Name: {self.name}, Species: Cat, Color: {self.breed_or_color}")
+        print(f"Name: {self.name}, Colour: {self.colour}, Breed: {self.breed}")
+
+class Cat(Animal):
+    def __init__(self, name: str, colour: str):
+        super().__init__(name, colour)
+
+    def speak(self):
+        return "Meow!"
+
+    def display_info(self):
+        print(f"Name: {self.name}, Colour: {self.colour}")
 
 # Example usage:
-dog = BADAnimal("Buddy", True, "Golden Retriever")
-cat = BADAnimal("Whiskers", False, "Black")
+dog = Dog("Buddy", "Golden", "Golden Retriever")
+cat = Cat("Whiskers", "Black")
 
 # Display information and speak
 dog.display_info() # Output: Name: Buddy, Species: Dog, Breed: Golden Retriever
