@@ -22,9 +22,20 @@ class Truck(Car):
         super().display_info()
         print(f"Payload Capacity: {self.payload_capacity} tons")
 
+class ElectricTruck(Truck):
+    def __init__(self, make, model, year, number_of_wheels, number_of_doors, payload_capacity, battery=34):
+        super().__init__(make, model, year, number_of_wheels, number_of_doors, payload_capacity)
+        self.battery = battery
+
+    def display_info(self):
+        super().display_info()
+        print(f"Battery Capacity: {self.battery} kilowatt hours")
+
 car:Car = Car("Toyota", "Corolla", 2022, 4, 4)
 a_truck:Truck = Truck("Ford", "F-150", 2023, 4, 3, 3.3 )
+eTruck:ElectricTruck = ElectricTruck("Tesla", "Cybertruck", 2024, 4, 4, 1.3, 75)
 car.display_info()
 print("----------------")
 a_truck .display_info()
-
+print("----------------")
+eTruck.display_info()
