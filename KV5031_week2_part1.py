@@ -4,6 +4,11 @@ class Product:
         self.year = year
         self.price = price
 
+    def print_details(self):
+        print(f"Title: {self.title}")
+        print(f"Year: {self.year}")
+        print(f"Price: {self.price}")
+
 class Book(Product):
     def __init__(self, title, author, year, price, ISBN):
         super().__init__(title, year, price)
@@ -11,10 +16,8 @@ class Book(Product):
         self.ISBN = ISBN
 
     def print_details(self):
-        print(f"Title: {self.title}")
+        super().print_details()
         print(f"Author: {self.author}")
-        print(f"Year: {self.year}")
-        print(f"Price: {self.price}")
         print(f"ISBN: {self.ISBN}")
 
 
@@ -24,9 +27,7 @@ class DVD(Product):
         self.duration = duration
 
     def print_details(self):
-        print(f"Title: {self.title}")
-        print(f"Year: {self.year}")
-        print(f"Price: {self.price}")
+        super().print_details()
         print(f"Duration: {self.duration}")
 
 aBook = Book("The Big Book", "John Smith", "1981", "12.75", "1927323023299")
