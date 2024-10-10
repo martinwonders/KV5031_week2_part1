@@ -1,51 +1,42 @@
-class Animal:
-    def __init__(self, name: str, colour: str):
-        self.name = name
-        self.colour = colour
+class Product:
+    def __init__(self, title, year, price):
+        self.title = title
+        self.year = year
+        self.price = price
+
+class Book(Product):
+    def __init__(self, title, author, year, price, ISBN):
+        super().__init__(title, year, price)
+        self.author = author
+        self.ISBN = ISBN
+
+    def print_details(self):
+        print(f"Title: {self.title}")
+        print(f"Author: {self.author}")
+        print(f"Year: {self.year}")
+        print(f"Price: {self.price}")
+        print(f"ISBN: {self.ISBN}")
 
 
-class Dog(Animal):
-    def __init__(self, name: str, colour: str, breed: str):
-        super().__init__(name, colour)
-        self.breed = breed
+class DVD(Product):
+    def __init__(self, title, year, price, duration):
+        super().__init__(title, year, price)
+        self.duration = duration
 
-    def speak(self):
-        return "Woof!"
+    def print_details(self):
+        print(f"Title: {self.title}")
+        print(f"Year: {self.year}")
+        print(f"Price: {self.price}")
+        print(f"Duration: {self.duration}")
 
-    def display_info(self):
-        print(f"Name: {self.name}, Colour: {self.colour}, Breed: {self.breed}")
+aBook = Book("The Big Book", "John Smith", "1981", "12.75", "1927323023299")
+aDVD= DVD("The Shawshank Redemption", "1994", "10:00",  "2h:22m")
 
-class Cat(Animal):
-    def __init__(self, name: str, colour: str):
-        super().__init__(name, colour)
+aBook.print_details()
+print("-----------------")
+aDVD.print_details()
 
-    def speak(self):
-        return "Meow!"
 
-    def display_info(self):
-        print(f"Name: {self.name}, Colour: {self.colour}")
 
-class Tortoise(Animal):
-    def __init__(self, name: str, colour: str):
-        super().__init__(name, colour)
 
-    def speak(self):
-        return "Sigh!"
 
-    def display_info(self):
-        print(f"Name: {self.name}, Colour: {self.colour}")
-
-# Example usage:
-dog = Dog("Buddy", "Golden", "Golden Retriever")
-cat = Cat("Whiskers", "Black")
-tortoise = Tortoise("Flash", "Brown")
-
-# Display information and speak
-dog.display_info() # Output: Name: Buddy, Species: Dog, Breed: Golden Retriever
-print(dog.speak()) # Output: Woof!
-print("---")
-cat.display_info() # Output: Name: Whiskers, Species: Cat, Color: Black
-print(cat.speak()) # Output: Meow!
-print("---")
-tortoise.display_info()
-print(tortoise.speak())
