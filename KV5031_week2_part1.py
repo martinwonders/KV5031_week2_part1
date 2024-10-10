@@ -1,41 +1,28 @@
-class Car():
-    def __init__(self, make, model, year, number_of_wheels, number_of_doors):
-        self.make = make
-        self.model = model
-        self.year = year
-        self.number_of_wheels = number_of_wheels
-        self.number_of_doors = number_of_doors
+class BADAnimal:
+    def __init__(self, name: str, is_dog: bool, breed_or_color: str):
+        self.name = name
+        self.is_dog = is_dog # Boolean flag: True if dog, False if cat
+        self.breed_or_color = breed_or_color # Either breed for dog, or color for cat
+
+    def speak(self):
+        if self.is_dog:
+            return "Woof!"
+        else:
+            return "Meow!"
 
     def display_info(self):
-        print(f"Make: {self.make}")
-        print(f"Model: {self.model}")
-        print(f"Year: {self.year}")
-        print(f"Number of wheels: {self.number_of_wheels}")
-        print(f"Number of Doors: {self.number_of_doors}")
+        if self.is_dog:
+            print(f"Name: {self.name}, Species: Dog, Breed: {self.breed_or_color}")
+        else:
+            print(f"Name: {self.name}, Species: Cat, Color: {self.breed_or_color}")
 
-class Truck(Car):
-    def __init__(self, make, model, year, number_of_wheels ,number_of_doors, payload_capacity):
-        super().__init__(make, model, year, number_of_wheels, number_of_doors)
-        self.payload_capacity = payload_capacity
+# Example usage:
+dog = BADAnimal("Buddy", True, "Golden Retriever")
+cat = BADAnimal("Whiskers", False, "Black")
 
-    def display_info(self):
-        super().display_info()
-        print(f"Payload Capacity: {self.payload_capacity} tons")
-
-class ElectricTruck(Truck):
-    def __init__(self, make, model, year, number_of_wheels, number_of_doors, payload_capacity, battery=34):
-        super().__init__(make, model, year, number_of_wheels, number_of_doors, payload_capacity)
-        self.battery = battery
-
-    def display_info(self):
-        super().display_info()
-        print(f"Battery Capacity: {self.battery} kilowatt hours")
-
-car:Car = Car("Toyota", "Corolla", 2022, 4, 4)
-a_truck:Truck = Truck("Ford", "F-150", 2023, 4, 3, 3.3 )
-eTruck:ElectricTruck = ElectricTruck("Tesla", "Cybertruck", 2024, 4, 4, 1.3, 75)
-car.display_info()
-print("----------------")
-a_truck .display_info()
-print("----------------")
-eTruck.display_info()
+# Display information and speak
+dog.display_info() # Output: Name: Buddy, Species: Dog, Breed: Golden Retriever
+print(dog.speak()) # Output: Woof!
+print("---")
+cat.display_info() # Output: Name: Whiskers, Species: Cat, Color: Black
+print(cat.speak()) # Output: Meow!
