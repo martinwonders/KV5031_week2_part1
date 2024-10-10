@@ -1,40 +1,59 @@
-# Bad aggregation example for Book class
+class Address:
+    def __init__(self, street, city, postal_code):
+        self.street = street
+        self.city = city
+        self.postal_code = postal_code
+
+    def return_address(self):
+        return f"{self.street}, {self.city}, {self.postal_code}"
+
+
+class Author:
+    def __init__(self, name, email, phone):
+        self.name = name
+        self.email = email
+        self.phone = phone
+
+    def return_info(self):
+        return f"{self.name}, {self.email}, {self.phone}"
+
+class Publisher:
+    def __init__(self, name, address, email, phone):
+        self.name = name
+        self.address = address
+        self.email = email
+        self.phone = phone
+
+    def return_info(self):
+        return f"{self.name}, {self.address.return_address()}, {self.email}, {self.phone}"
+
+
+# Good aggregation example for Book class
 class Book:
-    def __init__(self, title, author_name, author_email, author_phone,
-                 publisher_name, publisher_address, publisher_email,
-                 publisher_phone, isbn, num_pages):
+    def __init__(self, title, author, publisher, isbn, num_pages):
+
         self.title = title
-        self.author_name = author_name
-        self.author_email = author_email
-        self.author_phone = author_phone
-        self.publisher_name = publisher_name
-        self.publisher_address = publisher_address
-        self.publisher_email = publisher_email
-        self.publisher_phone = publisher_phone
+        self.author = author
+        self.publisher = publisher
         self.isbn = isbn
         self.num_pages = num_pages
 
     def show_info(self):
         print(f"Title: {self.title}")
-        print(f"Author: {self.author_name}, Email: {self.author_email}, Phone: {self.author_phone}")
-        print(f"Publisher: {self.publisher_name}, \ "
-              f"Address: {self.publisher_address}, \ "
-              f"Email: {self.publisher_email}, Phone: {self.publisher_phone}")
+        print(f"Author: {self.author.return_info()}")
+        print(f"Publisher: {self.publisher.return_info()}")
         print(f"ISBN: {self.isbn}")
         print(f"Number of Pages: {self.num_pages}")
 
-# Creating a Book object with all details combined into one class
-book = Book(
-"The Great Gatsby",
-"F. Scott Fitzgerald",
-"fscott@example.com",
-"123-456-7890",
-"Scribner",
-"123 Publisher Ave, New York, NY",
-"contact@scribner.com",
-"987-654-3210",
-"9780743273565",
-180
-)
+#Create and Address object for the publisher
+publisher_address = Address("123 Publisher Ave", "New York", "NY")
+#Create a publisher object and use the address
+publisher = Publisher("Scribner", publisher_address, "contact@scribner.com", "987-654-3210")
+#Create an Author object
+author = Author("F. Scott Fitzgerald", "fscott@example.com", "123-456-7890")
+
+# Creating a Book object with the author and publisher objects
+book = Book( "The Great Gatsby", author, publisher, "9780743273565", 180)
+
 # Display book information
 book.show_info()
